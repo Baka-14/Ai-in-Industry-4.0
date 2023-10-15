@@ -1,0 +1,97 @@
+For running Darknet and inferencing with openCV we need to-: 
+
+Step-1-:
+First install Darknet base system 
+we do this by cloning the  Darknet git repository
+by running-: 
+```
+git clone https://github.com/pjreddie/darknet.git
+cd darknet
+make
+``` 
+
+Step-2-:
+We  need to load the weights of a pretrained model
+DarkNet supports a variety of pre-trained models,including YOLOv3 and YOLOv4. 
+You can find the model configuration files and pre-trained weights on the official website or within the repository. 
+These files define the architecture and parameters of the neural network.
+
+Here we go ahead with yolov3 and to do that run the following command-: 
+```
+wget https://pjreddie.com/media/files/yolov3.weights 
+```
+
+then we can test if the weights have been loaded by runing following command-: 
+``` 
+./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+```
+
+Step-3-: 
+We can make Darknet faster by using Nvidias CUDA library , this can be done by-: 
+```
+go to the first line of the Makefile in the base directory to read: 
+GPU=1 
+```
+
+Now you can make the project and CUDA will be enabled. 
+By default it will run the network on the 0th graphics card in your system 
+(if you installed CUDA correctly you can list your graphics cards using nvidia-smi). 
+
+To run with CUDA run the following command-: 
+```
+./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
+```
+
+Step-4-: 
+To use OpenCV first install openCV by running the following command-: 
+``` 
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git 
+``` 
+we configure OpenCV by running-: 
+``` 
+-DCMAKE_BUILD_TYPE=Release, -D OPENCV_GENERATE_PKGCONFIG, -D BUILD_EXAMPLES, and -D CMAKE_INSTALL_PREFIX=/usr/local../opencv  
+``` 
+
+Then you can build using the following command
+```
+make -j7 
+``` 
+
+If all goes well it should build successfully and you can execute the following command to install opencv
+```
+sudo make install
+```
+Once it installed successfully you can test that pkg-config is configured properly using the following command
+```
+pkg-config --cflags opencv4
+
+-I/usr/local/include/opencv4 
+``` 
+
+Now try to compile darknet again but first you will need to change the option opencv=1 in the Makefile. 
+By chaging the 2nd line of the Makefile to read:
+```
+OPENCV=1 
+``` 
+
+You're done! To try it out, first re-make the project. 
+Then use the imtest routine to test image loading and displaying:
+```
+./darknet imtest data/eagle.jpg
+``` 
+
+If you get a bunch of windows with eagles in them you've succeeded! 
+
+
+Step 5. Test everything
+If all goes well you should be able to get realtime detection using the webcam. To try that you can run the following command
+```
+./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights 
+``` 
+This will open your webcam and start detecting objects in realtime as shown in the following video.
+ 
+You can also get it to run detection on a video by using the following command
+```
+./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights <video file> 
+```

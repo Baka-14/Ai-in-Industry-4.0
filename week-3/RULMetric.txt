@@ -1,0 +1,8 @@
+In context of the NASA RUL problem , Recall is more important than Precision 
+
+This is because When a component is incorrectly labelled as "not requiring servicing" when it actually does.
+Implies that there is a significant safety issues that could put lives in danger and result in catastrophic failures. 
+In the aviation sector, safety should always come first. 
+The cost of Serving an AirCraft prior to its actual time is much less 
+than the cost we might have to incur if we falsely classify as doesnt require servicing as this might lead to safety issues 
+
