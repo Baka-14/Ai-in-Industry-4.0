@@ -1,6 +1,6 @@
 # AI in Industry (AI4104)
 
-A collection of assignments from the **AI in Industry * course, covering IoT (Raspberry Pi + sensors + Firebase), real-time communication (Socket.IO), CPU scheduling, computer vision (YOLO, ResNet), time-series forecasting (SARIMA), and predictive maintenance (NASA RUL). Each section below describes what was done, the tech stack used, and how to run it.
+A collection of assignments from the **AI in Industry** course, covering IoT (Raspberry Pi + sensors + Firebase), real-time communication (Socket.IO), CPU scheduling, computer vision (YOLO, ResNet), time-series forecasting (SARIMA), and predictive maintenance (NASA RUL). Each section below describes what was done, the tech stack used, and how to run it.
 
 ---
 
